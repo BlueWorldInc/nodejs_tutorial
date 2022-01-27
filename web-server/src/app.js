@@ -2,22 +2,14 @@ const path = require("path")
 const express = require("express")
 
 const path_dir_public = path.join(__dirname, "../public");
+const path_file_about = path.join(path_dir_public, "./about.html");
+const path_file_help = path.join(path_dir_public, "./help.html");
 
 const app = express()
 
 app.use(express.static(path_dir_public))
-
-app.get("", (req, res) => {
-	res.send("hello world");
-})
-
-app.get("/help", (req, res) => {
-	res.send("Help page");
-})
-
-app.get("/about", (req, res) => {
-	res.send("<title>About page</title><h1>Abouts</h1>");
-})
+// app.use("/about", express.static(path_file_about))
+// app.use("/help", express.static(path_file_help))
 
 app.get("/weather", (req, res) => {
 	res.send({
