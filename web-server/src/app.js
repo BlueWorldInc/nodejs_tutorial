@@ -1,17 +1,18 @@
 const path = require("path")
 const express = require("express")
 
-const path_dir_public = path.join(__dirname, "../public");
-const path_file_about = path.join(path_dir_public, "./about.html");
-const path_file_help = path.join(path_dir_public, "./help.html");
-
 const app = express()
 
-app.set("view engine", "hbs")
+// Define paths for Express config
+const path_dir_public = path.join(__dirname, "../public");
+const path_dir_views = path.join(__dirname, "../templates");
 
+// Setup handlebars engine and views location
+app.set("view engine", "hbs")
+app.set("views", path_dir_views)
+
+// Setup static directory to serve
 app.use(express.static(path_dir_public))
-// app.use("/about", express.static(path_file_about))
-// app.use("/help", express.static(path_file_help))
 
 app.get("", (req, res) => {
 	res.render("index", {
