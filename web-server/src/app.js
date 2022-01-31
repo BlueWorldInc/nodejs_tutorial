@@ -66,6 +66,7 @@ app.get("/weather", (req, res) => {
 			res.send({
 				location: data.placeName,
 				temperature: data.temperature,
+				wind_speed: data.wind_speed,
 				data: data
 			});
 		

@@ -14,7 +14,7 @@ weatherForm.addEventListener("submit", (e) => {
 				messageOne.textContent = data.error;
 			} else {
 				messageOne.textContent = "Location: " + data.location;
-				messageTwo.textContent = "Temperature: " + data.temperature + "°C";
+				messageTwo.textContent = "Temperature: " + data.temperature + "°C. " + "La vitesse du vent est de " + data.wind_speed + " km/h.";
 			}
 		});
 	});

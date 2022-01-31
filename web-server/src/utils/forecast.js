@@ -15,6 +15,7 @@ const forecast = ({latitude, longitude, location} = {}, callback) => {
 		} else {
 			const current = body.current;
 			current.placeName = placeName;
+			current.feelslike = body.current.feelslike;
 			callback(undefined, current);
 		}
 	})
