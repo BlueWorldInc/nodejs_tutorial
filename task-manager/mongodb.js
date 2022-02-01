@@ -11,11 +11,18 @@ MongoClient.connect(connectionUrl, { useNewUrlParser: true }, (error, client) =>
 	}
 	const db = client.db(databaseName);
 
-	db.collection("users").findOne({_id: new ObjectId("61f95b4e8da72d5ff0f11a37")}, (error, user) => {
+	db.collection("tasks").find().sort({_id:-1}).limit(1).toArray((error, tasks) => {
 		if (error) {
-			return console.log("Unable to fetch the user");
+			return console.log("An error occured fetching data");
 		}
-		console.log(user);
+		console.log(tasks);
 	})
+
+	// db.collection("tasks").find({completed: true}).toArray((error, tasks) => {
+	// 	if (error) {
+	// 		return console.log("An error occured fetching data");
+	// 	}
+	// 	console.log(tasks);
+	// })
 
 });
