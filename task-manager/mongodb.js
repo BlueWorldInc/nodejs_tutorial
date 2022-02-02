@@ -11,6 +11,22 @@ MongoClient.connect(connectionUrl, { useNewUrlParser: true }, (error, client) =>
 	}
 	const db = client.db(databaseName);
 
+	// db.collection("users").deleteMany({
+	// 	age: 27
+	// }).then((result) => {
+	// 	console.log("result");
+	// }).catch((error) => {
+	// 	console.log("error");
+	// })
+
+	db.collection("tasks").deleteOne({
+		description: "lorema"
+	}).then((result) => {
+		console.log("result");
+	}).catch((error) => {
+		console.log("error");
+	})
+
 	// db.collection("users").updateOne({
 	// 	_id: new ObjectId("61f95c30b72f276cc4ec26ec")
 	// }, {
@@ -26,17 +42,17 @@ MongoClient.connect(connectionUrl, { useNewUrlParser: true }, (error, client) =>
 	// 	console.log(error);
 	// });
 
-	db.collection("tasks").updateMany({
-		completed: true
-	}, {
-		$unset: {
-			completed: ""
-		}
-	}).then((result) => {
-		console.log(result);
-	}).catch((error) => {
-		console.log(error);
-	});
+	// db.collection("tasks").updateMany({
+	// 	completed: true
+	// }, {
+	// 	$unset: {
+	// 		completed: ""
+	// 	}
+	// }).then((result) => {
+	// 	console.log(result);
+	// }).catch((error) => {
+	// 	console.log(error);
+	// });
 
 	// db.collection("tasks").find().sort({_id:-1}).limit(1).toArray((error, tasks) => {
 	// 	if (error) {
