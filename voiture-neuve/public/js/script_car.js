@@ -1,17 +1,40 @@
+const table = document.querySelector(".table");
 const messageOne = document.querySelector("#message-1");
 const messageTwo = document.querySelector("#message-2");
 
 messageOne.textContent = "Loading...";
-messageTwo.textContent = "";
+animatedLoading();
 fetch("/cars").then((response) => {
-	// console.log(response.json());
 	response.json().then((data) => {
 		if (data.error) {
 			messageOne.textContent = data.error;
 		} else {
-			messageOne.textContent = "Car name: " + data[0].name + " Brand: " + data[0].brand + " Price: " + data[0].price + "€";
-			messageTwo.textContent = "Car name: " + data[1].name + " Brand: " + data[1].brand + " Price: " + data[1].price + "€";
-			// messageTwo.textContent = "Temperature: " + data.temperature + "°C. " + "La vitesse du vent est de " + data.wind_speed + " km/h.";
+			data.forEach((car) => {
+				addRowToTable(car);
+			});
+			messageOne.style.display = "none";
+			table.style.display = "";
 		}
 	});
 });
+
+function addRowToTable(car) {
+	var row = table.insertRow(-1);
+	var name = row.insertCell(0);
+	var brand = row.insertCell(1);
+	var price = row.insertCell(2);
+	name.innerHTML = car.name;
+	brand.innerHTML = car.brand; 
+	price.innerHTML = car.price; 
+}
+
+function animatedLoading() {
+	let dot = 1;
+	setInterval(() => {
+		  messageTwo.textContent = "Loading" + (".".repeat(dot));
+		  dot++;
+		  if (dot>10) {
+			  dot=0;
+		  }
+	}, 200);
+}
