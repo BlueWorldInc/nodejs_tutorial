@@ -2,14 +2,14 @@ const add = (a, b) => {
 	return new Promise((resolve, reject) => {
 		setTimeout(() => {
 			if (a > 5) {
-				reject("A too high");
+				reject("A too high: " + a);
 			}
 			resolve(a + b);
 		}, 2000);
 	})
 }
 
-add(2, 3).then((sum) => {
+add(8, 3).then((sum) => {
 	console.log(sum);
 	return add(sum, 8);
 }).then((sum) => {
