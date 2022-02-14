@@ -9,9 +9,9 @@ const add = (a, b) => {
 	})
 }
 
-add(8, 3).then((sum) => {
+add(2, 3).then((sum) => {
 	console.log(sum);
-	return add(sum, 8);
+	return add(sum + 1, 8);
 }).then((sum) => {
 	console.log(sum);
 }).catch((e) => {
