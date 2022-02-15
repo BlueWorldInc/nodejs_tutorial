@@ -9,7 +9,7 @@ fetchOptions = {
 	}
 };
 
-submitButton.addEventListener("click", (e) => {
+submitButton.addEventListener("click", async (e) => {
 	e.preventDefault();
 	body = {
 		"name": document.querySelector("#name").value,
@@ -17,10 +17,10 @@ submitButton.addEventListener("click", (e) => {
 		"price": document.querySelector("#price").value
 	}
 	fetchOptions.body = JSON.stringify(body);
-	fetch("/cars", fetchOptions).then((response) => {
-		console.log(response);
-	});
-	
+	await fetch("/cars", fetchOptions);
+	console.log("done");
+	// Simulate a mouse click:
+	window.location.href = "/car_list";
 })
 
 
