@@ -3,7 +3,7 @@ const messageOne = document.querySelector("#message-1");
 const messageTwo = document.querySelector("#message-2");
 
 messageOne.textContent = "Loading...";
-animatedLoading();
+// animatedLoading();
 fetch("/cars").then((response) => {
 	response.json().then((data) => {
 		if (data.error) {

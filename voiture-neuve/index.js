@@ -26,7 +26,7 @@ app.use(express.static(path_dir_public))
 // REST API
 app.post('/cars', async (req, res) => {
 	const car = new Car(req.body);
-
+	console.log(req.body);
 	try {
 		await car.save();
 		res.status(201).send(car);

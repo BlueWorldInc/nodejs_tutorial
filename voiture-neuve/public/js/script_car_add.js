@@ -1,15 +1,26 @@
-const table = document.querySelector(".table");
+const submitButton = document.querySelector("#submit");
 
-fetch("/cars").then((response) => {
-	response.json().then((data) => {
-		if (data.error) {
-			messageOne.textContent = data.error;
-		} else {
-			data.forEach((car) => {
-				addRowToTable(car);
-			});
-			messageOne.style.display = "none";
-			table.style.display = "";
-		}
+fetchOptions = {
+	method: "POST",
+	// body: JSON.stringify({ "name": "m4", "brand": "mazda", "price": 45000 }),
+	headers: {
+		'Accept': 'application/json',
+		'Content-Type': 'application/json'
+	}
+};
+
+submitButton.addEventListener("click", (e) => {
+	e.preventDefault();
+	body = {
+		"name": document.querySelector("#name").value,
+		"brand": document.querySelector("#brand").value,
+		"price": document.querySelector("#price").value
+	}
+	fetchOptions.body = JSON.stringify(body);
+	fetch("/cars", fetchOptions).then((response) => {
+		console.log(response);
 	});
-});
+	
+})
+
+
