@@ -24,34 +24,38 @@ app.use(express.static(path_dir_public))
 
 
 // REST API
-app.post('/cars', (req, res) => {
+app.post('/cars', async (req, res) => {
 	const car = new Car(req.body);
 
-	car.save().then(() => {
+	try {
+		await car.save();
 		res.status(201).send(car);
-	}).catch((e) => {
+	} catch (e) {
 		res.status(400).send(e);
-	});
+	}
 });
 
-app.get('/cars', (req, res) => {
-	Car.find({}).then((cars) => {
-		res.status(200).send(cars)
-	}).catch((e) => {
+app.get('/cars', async (req, res) => {
+	try {
+		const cars = await Car.find({});
+		res.status(200).send(cars);
+	} catch (e) {
 		res.status(500).send(e);
-	});
+	}
 });
 
-app.get('/cars/:id', (req, res) => {
+app.get('/cars/:id', async (req, res) => {
 	const _id = req.params.id;
-	Car.findById(_id).then((car) => {
+
+	try {
+		const car = await Car.findById(_id);
 		if (!car) {
 			return res.status(404).send();
 		}
-		res.send(car)
-	}).catch((e) => {
+		res.send(car);
+	} catch (e) {
 		res.status(500).send(e);
-	});
+	}
 });
 
 // Pages
@@ -74,6 +78,14 @@ app.get("/help", (req, res) => {
 app.get("/car_list", (req, res) => {
 	res.render("car_list", {
 		title: 'List of cars',
+		name: 'Cars',
+		creator: 'ocal'
+	})
+})
+
+app.get("/car_add", (req, res) => {
+	res.render("car_add", {
+		title: 'Add a cars',
 		name: 'Cars',
 		creator: 'ocal'
 	})
