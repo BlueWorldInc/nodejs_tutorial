@@ -14,19 +14,16 @@ app.listen(port, () => {
 	console.log("Server is up on port");
 });
 
-// const bcrypt = require("bcryptjs");
+// const jwt = require("jsonwebtoken");
 
 // const myFunction = async () => {
-// 	const password = "Red12345!";
-// 	const hashedPassword = await bcrypt.hash(password, 8);  // <- Génère un hash différent mais comparable.
-// 	const hashedPassword2 = await bcrypt.hash(password, 8); // <- Pour éviter que l'on puisse facilement le reverse.
 
-// 	console.log(password);
-// 	console.log(hashedPassword);
-// 	console.log(hashedPassword2);
+// 	const token = jwt.sign({_id: "abc123"}, "isthisarealsecret", { expiresIn: "7 days"});
+// 	console.log(token);
+// 	const data = jwt.verify(token, "isthisarealsecret");
 
-// 	const isMatch = await bcrypt.compare("Red12345!", hashedPassword);
-// 	console.log(isMatch);
+// 	console.log(data);
+
 // }
 
 // myFunction();
