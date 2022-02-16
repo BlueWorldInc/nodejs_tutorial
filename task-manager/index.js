@@ -14,19 +14,19 @@ app.listen(port, () => {
 	console.log("Server is up on port");
 });
 
-const bcrypt = require("bcryptjs");
+// const bcrypt = require("bcryptjs");
 
-const myFunction = async () => {
-	const password = "Red12345!";
-	const hashedPassword = await bcrypt.hash(password, 8);
-	const hashedPassword2 = await bcrypt.hash(password, 8);
+// const myFunction = async () => {
+// 	const password = "Red12345!";
+// 	const hashedPassword = await bcrypt.hash(password, 8);  // <- Génère un hash différent mais comparable.
+// 	const hashedPassword2 = await bcrypt.hash(password, 8); // <- Pour éviter que l'on puisse facilement le reverse.
 
-	console.log(password);
-	console.log(hashedPassword);
-	console.log(hashedPassword2);
+// 	console.log(password);
+// 	console.log(hashedPassword);
+// 	console.log(hashedPassword2);
 
-	const isMatch = await bcrypt.compare("Red12345!", hashedPassword);
-	console.log(isMatch);
-}
+// 	const isMatch = await bcrypt.compare("Red12345!", hashedPassword);
+// 	console.log(isMatch);
+// }
 
-myFunction();
+// myFunction();
