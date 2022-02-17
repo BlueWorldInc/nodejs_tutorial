@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="/css/style.css">
+	<title>Car Add</title>
+	<link rel="icon" href="/img/weather.png">
+</head>
+
+<body>
+	<div class="container main-content">
+		{{>header}}
+		<p>Use this page to edit a car!</p>
+		<input id="_id" value={{id}} style="display:none;">
+		<form action="/car_list">
+			<label for="name">Name:</label><br>
+			<input type="text" id="name" name="name" value="m4"><br>
+			<label for="brand">Brand:</label><br>
+			<input type="text" id="brand" name="brand" value="mazda"><br>
+			<label for="price">Price:</label><br>
+			<input type="number" id="price" name="price" value="45000"><br><br>
+			<input type="submit" id="submit" value="Submit">
+		</form>
+		<br>
+		<table class="table" style="display: none;">
+			<tr>
+				<th>Name</th>
+				<th>Brand</th>
+				<th>Price</th>
+			</tr>
+			<tr>
+				<td>Name</td>
+				<td>Brand</td>
+				<td>Price</td>
+			</tr>
+		</table>
+	</div>
+	{{>footer}}
+	<script src="/js/script_car_edit.js"></script>
+</body>
+
+</html>

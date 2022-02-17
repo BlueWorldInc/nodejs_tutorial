@@ -28,8 +28,17 @@ router.get("/car_list", (req, res) => {
 
 router.get("/car_add", (req, res) => {
 	res.render("car_add", {
-		title: 'Add a cars',
+		title: 'Add a car',
 		name: 'Cars',
+		creator: 'ocal'
+	})
+})
+
+router.get("/car_edit/:id", (req, res) => {
+	res.render("car_edit", {
+		title: 'Edit a car',
+		name: 'Cars',
+		id: req.params.id,
 		creator: 'ocal'
 	})
 })
