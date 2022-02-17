@@ -43,6 +43,15 @@ router.get("/car_edit/:id", (req, res) => {
 	})
 })
 
+router.get("/car_list/edit", (req, res) => {
+	res.render("car_list_edit", {
+		title: 'Edit a car',
+		name: 'Cars',
+		id: req.params.id,
+		creator: 'ocal'
+	})
+})
+
 router.get("/about", (req, res) => {
 	res.render("about", {
 		title: 'About Us',

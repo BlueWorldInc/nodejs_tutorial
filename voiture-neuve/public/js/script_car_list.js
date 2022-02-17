@@ -19,10 +19,10 @@ fetch("/cars").then((response) => {
 });
 
 function addRowToTable(car) {
-	var row = table.insertRow(-1);
-	var name = row.insertCell(0);
-	var brand = row.insertCell(1);
-	var price = row.insertCell(2);
+	let row = table.insertRow(-1);
+	let name = row.insertCell(0);
+	let brand = row.insertCell(1);
+	let price = row.insertCell(2);
 	name.innerHTML = car.name;
 	brand.innerHTML = car.brand; 
 	price.innerHTML = car.price; 
