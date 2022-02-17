@@ -12,6 +12,7 @@ fetch("/cars").then((response) => {
 			data.forEach((car) => {
 				addRowToTable(car);
 			});
+			addAction();
 			messageOne.style.display = "none";
 			table.style.display = "";
 		}
@@ -23,9 +24,12 @@ function addRowToTable(car) {
 	let name = row.insertCell(0);
 	let brand = row.insertCell(1);
 	let price = row.insertCell(2);
+	let action = row.insertCell(3);
 	name.innerHTML = car.name;
 	brand.innerHTML = car.brand; 
-	price.innerHTML = car.price; 
+	price.innerHTML = car.price;
+	action.innerHTML = '<i class="bi bi-activity"></i>';
+	action.innerHTML = '<div class="centered"><i class="bi bi-pencil icon"></i>&nbsp;&nbsp;&nbsp;<i class="bi bi-x-lg icon"></i></div>';
 }
 
 function animatedLoading() {
@@ -37,4 +41,18 @@ function animatedLoading() {
 			  dot=0;
 		  }
 	}, 200);
+}
+
+function addAction() {
+	const icons = document.getElementsByClassName("icon");
+	Array.from(icons).forEach(icon => {
+		icon.addEventListener("click", () => {
+			const type = icon.classList[1].slice(3);
+			if (type === "pencil") {
+				console.log("edit");
+			} else if (type === "x-lg") {
+				console.log("delete");
+			}
+		});
+	});
 }
