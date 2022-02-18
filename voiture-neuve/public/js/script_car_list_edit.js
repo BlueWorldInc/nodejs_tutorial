@@ -28,8 +28,8 @@ function addRowToTable(car) {
 	name.innerHTML = car.name;
 	brand.innerHTML = car.brand; 
 	price.innerHTML = car.price;
-	action.innerHTML = '<i class="bi bi-activity"></i>';
-	action.innerHTML = '<div class="centered"><i class="bi bi-pencil icon"></i>&nbsp;&nbsp;&nbsp;<i class="bi bi-x-lg icon"></i></div>';
+	action.innerHTML = `<div data-_id="`+car._id+`" class="centered"><i class="bi bi-pencil icon">
+						</i>&nbsp;&nbsp;&nbsp;<i class="bi bi-x-lg icon"></i></div>`;
 }
 
 function animatedLoading() {
@@ -46,10 +46,11 @@ function animatedLoading() {
 function addAction() {
 	const icons = document.getElementsByClassName("icon");
 	Array.from(icons).forEach(icon => {
+		const _id = icon.parentNode.dataset._id;
 		icon.addEventListener("click", () => {
 			const type = icon.classList[1].slice(3);
 			if (type === "pencil") {
-				console.log("edit");
+				window.location.href = "/car_edit/"+_id;
 			} else if (type === "x-lg") {
 				console.log("delete");
 			}
