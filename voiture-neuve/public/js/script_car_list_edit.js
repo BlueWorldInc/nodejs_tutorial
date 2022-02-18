@@ -4,22 +4,27 @@ const messageTwo = document.querySelector("#message-2");
 
 messageOne.textContent = "Loading...";
 // animatedLoading();
-fetch("/cars").then((response) => {
-	response.json().then((data) => {
-		if (data.error) {
-			messageOne.textContent = data.error;
-		} else {
-			data.forEach((car) => {
-				addRowToTable(car);
-			});
-			addAction();
-			messageOne.style.display = "none";
-			table.style.display = "";
-		}
-	});
-});
 
-function addRowToTable(car) {
+const fetchCars = async () => {
+	const response = await fetch("/cars");
+	const data = await response.json();
+	if (data.error) {
+		messageOne.textContent = data.error;
+	} else {
+		// data.forEach((car) => {
+		// 	await addRowToTable(car);
+		// 	// addRowToTable(car);
+		// });
+		for (let i = 0; i < data.length; i++) {
+			await addRowToTable(data[i]);
+		}
+		addAction();
+		messageOne.style.display = "none";
+		table.style.display = "";
+	}
+};
+
+const addRowToTable = async (car) => {
 	let row = table.insertRow(-1);
 	let name = row.insertCell(0);
 	let brand = row.insertCell(1);
@@ -30,7 +35,7 @@ function addRowToTable(car) {
 	price.innerHTML = car.price;
 	action.innerHTML = `<div data-_id="`+car._id+`" class="centered"><i class="bi bi-pencil icon">
 						</i>&nbsp;&nbsp;&nbsp;<i class="bi bi-x-lg icon"></i></div>`;
-}
+};
 
 function animatedLoading() {
 	let dot = 1;
@@ -43,7 +48,7 @@ function animatedLoading() {
 	}, 200);
 }
 
-function addAction() {
+const addAction = async () => {
 	const icons = document.getElementsByClassName("icon");
 	Array.from(icons).forEach(icon => {
 		const _id = icon.parentNode.dataset._id;
@@ -52,8 +57,29 @@ function addAction() {
 			if (type === "pencil") {
 				window.location.href = "/car_edit/"+_id;
 			} else if (type === "x-lg") {
-				console.log("delete");
+				deleteCar(_id);
 			}
 		});
 	});
-}
+};
+
+const deleteCar = async (_id) => {
+	const fetchOptions = {
+		method: "DELETE",
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		}
+	};
+	try {
+		const deletedCar = await fetch("/cars/"+_id, fetchOptions);
+		if (!deletedCar) {
+			return console.log("there where no car to delete");
+		}
+		console.log(deletedCar);
+	} catch (e) {
+		console.log("error deleting car");
+	}
+};
+
+fetchCars();

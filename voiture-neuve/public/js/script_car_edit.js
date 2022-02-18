@@ -1,6 +1,9 @@
 const submitButton = document.querySelector("#submit");
 const _id = document.querySelector("#_id").value;
+const messageOne = document.querySelector("#message-1");
+const mainForm = document.querySelector("#main-form");
 
+messageOne.textContent = "Loading...";
 fetchOptions = {
 	method: "PATCH",
 	headers: {
@@ -25,6 +28,8 @@ submitButton.addEventListener("click", async (e) => {
 const fetchCar = async (_id) => {
 	const carJson = await fetch("/cars/"+_id);
 	const car = await carJson.json();
+	messageOne.style.display = "none";
+	mainForm.style.display = "";
 	document.querySelector("#name").value  = car.name;
 	document.querySelector("#brand").value = car.brand;
 	document.querySelector("#price").value = car.price;

@@ -17,7 +17,8 @@
 		{{>header}}
 		<p>Use this page to edit a car!</p>
 		<input id="_id" value={{id}} style="display:none;">
-		<form action="/car_list">
+		<p id="message-1"></p>
+		<form id="main-form" action="/car_list" style="display:none;">
 			<label for="name">Name:</label><br>
 			<input type="text" id="name" name="name" value=""><br>
 			<label for="brand">Brand:</label><br>
