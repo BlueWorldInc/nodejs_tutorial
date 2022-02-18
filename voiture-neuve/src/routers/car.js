@@ -62,4 +62,18 @@ router.get('/cars/:id', async (req, res) => {
 	}
 });
 
+router.delete('/cars/:id', async (req, res) => {
+	const _id = req.params.id;
+
+	try {
+		const car = await Car.findByIdAndDelete(_id);
+		if (!car) {
+			return res.status(404).send();
+		}
+		res.send(car);
+	} catch (e) {
+		res.status(500).send(e);
+	}
+});
+
 module.exports = router;

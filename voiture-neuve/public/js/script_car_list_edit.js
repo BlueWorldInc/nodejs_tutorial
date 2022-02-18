@@ -6,6 +6,7 @@ messageOne.textContent = "Loading...";
 // animatedLoading();
 
 const fetchCars = async () => {
+	preloadIcons();
 	const response = await fetch("/cars");
 	const data = await response.json();
 	if (data.error) {
@@ -18,7 +19,7 @@ const fetchCars = async () => {
 		for (let i = 0; i < data.length; i++) {
 			await addRowToTable(data[i]);
 		}
-		addAction();
+		await addAction();
 		messageOne.style.display = "none";
 		table.style.display = "";
 	}
@@ -33,8 +34,8 @@ const addRowToTable = async (car) => {
 	name.innerHTML = car.name;
 	brand.innerHTML = car.brand; 
 	price.innerHTML = car.price;
-	action.innerHTML = `<div data-_id="`+car._id+`" class="centered"><i class="bi bi-pencil icon">
-						</i>&nbsp;&nbsp;&nbsp;<i class="bi bi-x-lg icon"></i></div>`;
+	action.innerHTML = `<div data-_id="`+car._id+`" class="centered">
+						<i class="bi bi-pencil icon"></i>&nbsp;&nbsp;&nbsp;<i class="bi bi-x-lg icon"></i></div>`;
 };
 
 function animatedLoading() {
@@ -57,13 +58,16 @@ const addAction = async () => {
 			if (type === "pencil") {
 				window.location.href = "/car_edit/"+_id;
 			} else if (type === "x-lg") {
-				deleteCar(_id);
+				if (window.confirm("Do you want to delete the car ?")) {
+					deleteCar(_id);
+				}
 			}
 		});
 	});
 };
 
 const deleteCar = async (_id) => {
+	console.log("del");
 	const fetchOptions = {
 		method: "DELETE",
 		headers: {
@@ -76,10 +80,17 @@ const deleteCar = async (_id) => {
 		if (!deletedCar) {
 			return console.log("there where no car to delete");
 		}
-		console.log(deletedCar);
+		window.location.href = "/car_list/edit";
 	} catch (e) {
 		console.log("error deleting car");
 	}
+};
+
+const preloadIcons = () => {
+	const newDiv = document.createElement("div");
+	newDiv.innerHTML = `<div id="newDiv" style="visibility:hidden;"><i class="bi bi-pencil icon"></i><i class="bi bi-x-lg icon"></i></div>`;
+	document.body.appendChild(newDiv);
+	setTimeout(() => {newDiv.remove();}, 10000);
 };
 
 fetchCars();
