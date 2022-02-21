@@ -26,12 +26,12 @@ router.post('/users/login', async (req, res) => {
 
 router.post('/users/logout', auth, async (req, res) => {
 	try {
-		req.user.tokens = req.user.tokens.fitler((token) => {
+		req.user.tokens = req.user.tokens.filter((token) => {
 			return (token.token !== req.token);	// <-- si le token qui est fournit en post par l'utilisateur est égale à un 
-												// ^-- token dans la liste on le vire.
+			// ^-- token dans la liste on le vire.
 		});
-		await res.user.save();
-		res.send();
+		await req.user.save();
+		res.status(200).send();
 	} catch (e) {
 		res.status(500).send();
 	}
@@ -40,7 +40,7 @@ router.post('/users/logout', auth, async (req, res) => {
 router.post('/users/logoutAll', auth, async (req, res) => {
 	try {
 		req.user.tokens = [];
-		await res.user.save();
+		await req.user.save();
 		res.send();
 	} catch (e) {
 		res.status(500).send();
