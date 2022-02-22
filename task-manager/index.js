@@ -14,16 +14,16 @@ app.listen(port, () => {
 	console.log("Server is up on port");
 });
 
-pet = {
-	name: "cat"
-};
+// pet = {
+// 	name: "cat"
+// };
 
-pet.toJSON = function () {
-	// console.log(this.toJSON);
-	// console.log(this.toJSON.toString());
-	// this.toJSON(); // <- maximum call stack size exceeded
-	this.a = "a";
-	return this;
-};
+// pet.toJSON = function () {
+// 	// console.log(this.toJSON);
+// 	// console.log(this.toJSON.toString());
+// 	// this.toJSON(); // <- maximum call stack size exceeded
+// 	this.a = "a";
+// 	return this;
+// };
 
-console.log(JSON.stringify(pet));
+// console.log(JSON.stringify(pet));
