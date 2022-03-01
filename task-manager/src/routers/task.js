@@ -17,14 +17,27 @@ router.post('/tasks', auth, async (req, res) => {
 	}
 });
 
+// Get /tasks?completed=false
 router.get('/tasks', auth, async (req, res) => {
+	const match = {}
+
+	if (req.query.completed) {
+		match.completed = (req.query.completed === 'true');
+	}
+
 	try {
-		const tasks = await Task.find({ owner: req.user._id });
-		res.status(200).send(tasks)
+		// const tasks = await Task.find({ owner: req.user._id });
+		// res.status(200).send(tasks)
+		await req.user.populate({
+			path: 'tasks',
+			match
+		}).execPopulate();
+		res.status(200).send(req.user.tasks);
 	} catch (e) {
 		res.status(500).send(e);
 	}
 });
+
 
 router.get('/tasks/:id', auth, async (req, res) => {
 	const _id = req.params.id;
