@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/bootstrap/icons/bootstrap-icons.css">
+	<script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<title>Car List</title>
+	<link rel="icon" href="/img/weather.png">
+</head>
+
+<body>
+	<div class="container main-content">
+		{{>header}}
+		<p>Use this site to see the newest car in the market!</p>
+		<p id="message-1"></p>
+		<p id="message-2"></p>
+		{{!-- <img src="/bootstrap/icons/svg/bootstrap.svg" alt="Bootstrap"> --}}
+		<table class="table" style="display: none;">
+			<tr>
+				<th>Name</th>
+				<th>Brand</th>
+				<th>Price</th>
+				<th class="centered">Action</th>
+			</tr>
+		</table>
+	</div>
+	{{>footer}}
+	<script src="/js/script_car_list_edit.js"></script>
+</body>
+
+</html>
