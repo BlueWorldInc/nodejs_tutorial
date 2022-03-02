@@ -21,7 +21,7 @@
 		<p>Use this site to see the newest car in the market!</p>
 		<p id="message-1"></p>
 		<p id="message-2"></p>
-		<table class="styled-table" style="display: initial;">
+		<table class="styled-table" style="display: none;">
 			<tr>
 				<th>Marque</th>
 				<th>Modèle</th>
@@ -31,21 +31,14 @@
 				<th>Puissance fiscale</th>
 				<th>Puissance DIN</th>
 			</tr>
-			<tr>
-				<td>Citroen</td>
-				<td>C3</td>
-				<td>2000 €</td>
-				<td>201500 km</td>
-				<td>Diesel</td>
-				<td>4 cv</td>
-				<td>70 Ch</td>
-			</tr>
 		</table>
 	</div>
 
+	<button id="get-new-cars">Get new cars</button>
+
 	{{>footer}}
 	{{!-- <script src="../data/data.js"></script> --}}
-	<script src="/js/script_car_list.js"></script>
+	<script src="/js/script_car_lbc.js"></script>
 </body>
 </html>
 

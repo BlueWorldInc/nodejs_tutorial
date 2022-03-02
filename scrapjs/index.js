@@ -4,6 +4,7 @@ require("./src/db/mongoose.js");
 const hbs = require("hbs");
 const routerCar = require("./src/routers/car.js");
 const routerPages = require("./src/routers/pages.js");
+const routerScrap = require("./src/routers/scrap.js");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -25,6 +26,7 @@ app.use(express.static(path_dir_public));
 
 app.use(routerCar);
 app.use(routerPages);
+app.use(routerScrap);
 
 app.listen(port, () => {
 	console.log("Server is up on port " + port + ".");
