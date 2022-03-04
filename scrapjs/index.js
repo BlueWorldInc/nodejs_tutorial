@@ -25,8 +25,8 @@ hbs.registerPartials(path_dir_patials);
 app.use(express.static(path_dir_public));
 
 app.use(routerCar);
-app.use(routerPages);
 app.use(routerScrap);
+app.use(routerPages);
 
 app.listen(port, () => {
 	console.log("Server is up on port " + port + ".");

@@ -47,7 +47,7 @@ function animatedLoading() {
 			  dot=0;
 		  }
 	}, 200);
-}
+};
 
 const addAction = async () => {
 	const icons = document.getElementsByClassName("icon");
