@@ -41,6 +41,8 @@ function addRowToTable(car) {
 
 btnGetNewCars.addEventListener("click", () => {
 	fetch("/scrap").then((response) => {
+		console.log(response);
+		console.log(response.json());
 		response.json().then((data) => {
 			if (data.error) {
 				messageOne.textContent = data.error;
