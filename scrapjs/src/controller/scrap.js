@@ -34,7 +34,8 @@ class Scrap  {
 		// });
 
 		const url = "https://www.leboncoin.fr/voitures/2122225401.htm";
-		console.log(url);
+		// const url = "https://www.google.com";
+		// console.log(url);
 		// request({ url }, (error, {body} = {}) => {
 		// 	if (error) {
 		// 		console.log(error);
@@ -50,8 +51,9 @@ class Scrap  {
 		
 
 		puppeteer
-		.launch({ headless: false })
+		.launch({ headless: false, ignoreHTTPSErrors: true, defaultViewport: null, ignoreDefaultArgs: ["--enable-automation"] })
 		.then(async (browser) => {
+			// await page.setUserAgent('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36');
 			console.log(await browser.userAgent());
 			return browser.newPage();
 		})
@@ -61,10 +63,10 @@ class Scrap  {
 			});
 		})
 		.then(function(html) {
-			console.log(html);
+			// console.log(html);
 		})
 		.catch(function(e) {
-			console.log(e);
+			// console.log(e);
 		});
 
 
